@@ -9,10 +9,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class Employee {
     private int id;
     public String name;
     private int salary;
-    
 }
