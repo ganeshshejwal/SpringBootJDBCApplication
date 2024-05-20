@@ -10,7 +10,7 @@ import com.webapplication.employeeProject.model.Employee;
 public class EmployeeService {
 
     @Autowired
-    EmployeeDao employeeDao;
+    private EmployeeDao employeeDao;
 
     public Employee saveEmployee(Employee employee){
         return employeeDao.saveEmployee(employee);

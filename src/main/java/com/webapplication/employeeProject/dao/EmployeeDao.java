@@ -15,7 +15,7 @@ import com.webapplication.employeeProject.model.Employee;
 public class EmployeeDao {
 
     @Autowired
-    DataSource dbconnection;
+    private DataSource dbconnection;
 
     public Employee saveEmployee(Employee employee){
 
