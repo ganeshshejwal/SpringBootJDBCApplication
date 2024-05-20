@@ -19,7 +19,7 @@ import com.webapplication.employeeProject.service.EmployeeService;
 public class EmployeeController {
 
     @Autowired
-    EmployeeService employeeService;
+    private EmployeeService employeeService;
 
     @PostMapping
     public Employee save(@RequestBody Employee employee){

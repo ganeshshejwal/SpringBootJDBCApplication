@@ -1,9 +1,9 @@
 package com.webapplication.employeeProject.dao;
 
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.sql.DataSource;
@@ -18,11 +18,15 @@ public class EmployeeDao {
     DataSource dbconnection;
 
     public Employee saveEmployee(Employee employee){
+
         try(Connection con = dbconnection.getConnection();
-            Statement  stmt = con.createStatement();
+            PreparedStatement ptmt = con.prepareStatement("insert into employee (id, name, salary) values (?, ?, ?)");
             ){
-            String query = "insert into employee (id, name, salary) values (" + employee.getId() + ", '" + employee.getName() + "', " + employee.getSalary() + ")";
-            stmt.executeUpdate(query);
+            ptmt.setInt(1, employee.getId());
+            ptmt.setString(2, employee.getName());
+            ptmt.setInt(3, employee.getSalary());
+            ptmt.executeQuery();
+
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -32,15 +36,14 @@ public class EmployeeDao {
     public Employee getEmployee(int id){
         Employee employee=null;
         try(Connection con = dbconnection.getConnection();
-            Statement  stmt = con.createStatement();
+            PreparedStatement ptmt = con.prepareStatement("select * from employee where id=?")
             ){
-            String query="select * from employee where id="+id;
-            ResultSet resultSet = stmt.executeQuery(query);
+            ResultSet resultSet = ptmt.executeQuery();
             while(resultSet.next()){
-               int employeeid=resultSet.getInt("id");
-               String employeename=resultSet.getString("name");
-               int employeesal= resultSet.getInt("salary");
-               employee = new Employee(employeeid,employeename,employeesal);
+               int employeeId=resultSet.getInt(1);
+               String employeeName=resultSet.getString(2);
+               int employeeSal= resultSet.getInt(3);
+               employee = new Employee(employeeId,employeeName,employeeSal);
             }
         }catch (SQLException e){
             e.printStackTrace();
@@ -51,15 +54,14 @@ public class EmployeeDao {
     public List<Employee> getAllEmployees(){
         List<Employee> employees=new ArrayList<>();
         try(Connection con = dbconnection.getConnection();
-            Statement  stmt = con.createStatement();
+            PreparedStatement ptmt = con.prepareStatement("select * from employee");
             ){ 
-            String query = "select * from employee";
-            ResultSet resultSet = stmt.executeQuery(query);
+            ResultSet resultSet = ptmt.executeQuery();
             while(resultSet.next()){
-                int id=resultSet.getInt("id");
-                String name =resultSet.getString("name");
-                int salary=resultSet.getInt("salary");
-                employees.add(new Employee(id,name,salary));
+                int employeeId=resultSet.getInt(1);
+                String employeeName =resultSet.getString(2);
+                int employeeSalary=resultSet.getInt(3);
+                employees.add(new Employee(employeeId,employeeName,employeeSalary));
             }
         }catch (SQLException e){
            e.printStackTrace();
@@ -69,10 +71,12 @@ public class EmployeeDao {
 
     public Employee updateEmployee(Employee employee){
         try(Connection con = dbconnection.getConnection();
-            Statement  stmt = con.createStatement();
+            PreparedStatement ptmt = con.prepareStatement("update employee set name =?,salary=? where id=?");
             ){
-                String query = "update employee set name ='"+employee.getName()+ "',salary="+employee.getSalary()+"where id="+employee.getId();
-            stmt.executeUpdate(query);
+            ptmt.setInt(1,employee.getId());
+            ptmt.setString(2, employee.getName());
+            ptmt.setInt(3, employee.getSalary());
+            ptmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -81,10 +85,9 @@ public class EmployeeDao {
 
     public void deleteEmployee(int id){
         try(Connection con = dbconnection.getConnection();
-            Statement  stmt = con.createStatement();
+            PreparedStatement ptmt = con.prepareStatement("delete from employee where id=?");
             ){
-            String query="delete from employee where id="+id;
-            stmt.execute(query); 
+            ptmt.execute(); 
         } catch (SQLException e){
             e.printStackTrace();
         }
