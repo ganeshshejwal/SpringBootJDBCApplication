@@ -15,7 +15,7 @@ import com.webapplication.employeeProject.model.Employee;
 import com.webapplication.employeeProject.service.EmployeeService;
 
 @RestController
-@RequestMapping("/employees")
+@RequestMapping("/api/employees")
 public class EmployeeController {
 
     @Autowired
