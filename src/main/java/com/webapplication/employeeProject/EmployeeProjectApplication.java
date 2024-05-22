@@ -8,7 +8,6 @@ public class EmployeeProjectApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(EmployeeProjectApplication.class, args);
-		System.out.println("prgramme running");
 	}
 
 }
