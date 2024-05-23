@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.webapplication.employeeProject.model.Employee;
 import com.webapplication.employeeProject.service.EmployeeService;
@@ -37,8 +36,8 @@ public class EmployeeController {
     }
 
     @PutMapping("/{id}")
-    public Employee update(@PathVariable("id") int id, @RequestParam("name") String name, @RequestParam("salary") int sal){
-        return employeeService.updatEmployee(new Employee(id,name,sal));
+    public Employee update(@PathVariable("id") int id, @RequestBody Employee employee){
+        return employeeService.updateEmployee(id,employee);
     }
 
     @DeleteMapping("/{id}")

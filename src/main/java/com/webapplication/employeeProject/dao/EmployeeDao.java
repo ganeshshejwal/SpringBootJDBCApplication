@@ -20,7 +20,7 @@ public class EmployeeDao {
     public Employee saveEmployee(Employee employee){
 
         try(Connection con = dbconnection.getConnection();
-            PreparedStatement ptmt = con.prepareStatement("insert into employee (id, name, salary) values (?, ?, ?)");
+            PreparedStatement ptmt = con.prepareStatement("INSERT INTO employee (id, name, salary) VALUES (?, ?, ?)");
             ){
             ptmt.setInt(1, employee.getId());
             ptmt.setString(2, employee.getName());
@@ -36,8 +36,9 @@ public class EmployeeDao {
     public Employee getEmployee(int id){
         Employee employee=null;
         try(Connection con = dbconnection.getConnection();
-            PreparedStatement ptmt = con.prepareStatement("select * from employee where id=?")
+            PreparedStatement ptmt = con.prepareStatement("SELECT * FROM employee WHERE id=?")
             ){
+            ptmt.setInt(1, id);
             ResultSet resultSet = ptmt.executeQuery();
             while(resultSet.next()){
                int employeeId=resultSet.getInt(1);
@@ -54,7 +55,7 @@ public class EmployeeDao {
     public List<Employee> getAllEmployees(){
         List<Employee> employees=new ArrayList<>();
         try(Connection con = dbconnection.getConnection();
-            PreparedStatement ptmt = con.prepareStatement("select * from employee");
+            PreparedStatement ptmt = con.prepareStatement("SELECT * FROM employee");
             ){ 
             ResultSet resultSet = ptmt.executeQuery();
             while(resultSet.next()){
@@ -69,14 +70,15 @@ public class EmployeeDao {
         return employees;
     }
 
-    public Employee updateEmployee(Employee employee){
+    public Employee updateEmployee(int id,Employee employee){
         try(Connection con = dbconnection.getConnection();
-            PreparedStatement ptmt = con.prepareStatement("update employee set name =?,salary=? where id=?");
+            PreparedStatement ptmt = con.prepareStatement("UPDATE EMPLOYEE SET name =?,salary=? WHERE id=?");
             ){
-            ptmt.setInt(1,employee.getId());
-            ptmt.setString(2, employee.getName());
-            ptmt.setInt(3, employee.getSalary());
+            ptmt.setString(1, employee.getName());
+            ptmt.setInt(2, employee.getSalary());
+            ptmt.setInt(3,id);
             ptmt.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -85,7 +87,7 @@ public class EmployeeDao {
 
     public void deleteEmployee(int id){
         try(Connection con = dbconnection.getConnection();
-            PreparedStatement ptmt = con.prepareStatement("delete from employee where id=?");
+            PreparedStatement ptmt = con.prepareStatement("DELETE FROM employee WHERE id=?");
             ){
             ptmt.execute(); 
         } catch (SQLException e){

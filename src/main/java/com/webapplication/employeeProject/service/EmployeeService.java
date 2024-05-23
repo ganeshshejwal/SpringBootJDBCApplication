@@ -24,8 +24,9 @@ public class EmployeeService {
         return employeeDao.getAllEmployees();
     }
 
-    public Employee updatEmployee(Employee employee){
-        return employeeDao.updateEmployee(employee);
+    public Employee updateEmployee(int id,Employee employee){
+        employee.setId(id);
+        return employeeDao.updateEmployee(id,employee);
     }
 
     public void deleteEmployee(int id){
