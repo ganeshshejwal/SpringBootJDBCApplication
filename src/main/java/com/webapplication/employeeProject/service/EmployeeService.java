@@ -33,5 +33,10 @@ public class EmployeeService {
         employeeDao.deleteEmployee(id);
     }
 
+    public Employee save(Employee expectedResult) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'save'");
+    }
+
     
 }
