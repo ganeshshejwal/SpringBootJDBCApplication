@@ -9,22 +9,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.webapplication.employeeProject.dao.EmployeeDao;
 import com.webapplication.employeeProject.model.Employee;
 import com.webapplication.employeeProject.service.EmployeeService;
 
-@SpringBootTest
-public class employeeServiceTest {
+@ExtendWith(MockitoExtension.class)
+public class EmployeeServiceTest {
     
     @Mock
-    EmployeeDao employeeDao;
+    private EmployeeDao employeeDao;
 
     @InjectMocks
-    EmployeeService employeeService;
+    private EmployeeService employeeService;
 
     @Test
     public void saveEmployeeTest(){

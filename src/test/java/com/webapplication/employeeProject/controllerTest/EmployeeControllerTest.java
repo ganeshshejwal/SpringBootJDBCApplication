@@ -13,27 +13,23 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import com.webapplication.employeeProject.controller.EmployeeController;
-import com.webapplication.employeeProject.dao.EmployeeDao;
 import com.webapplication.employeeProject.model.Employee;
 import com.webapplication.employeeProject.service.EmployeeService;
 
-@SpringBootTest
+
 @ExtendWith(MockitoExtension.class)
 
 public class EmployeeControllerTest {
 
     @Mock
-    EmployeeService employeeService;
-
-    @Mock
-    EmployeeDao employeeDao;
+    private EmployeeService employeeService;
 
     @InjectMocks
-    EmployeeController employeeController;
+    private EmployeeController employeeController;
 
+    
     @Test
     public void saveEmployeeTest(){
         Employee expectedResult = new Employee(1,"Ganesh",90000);
