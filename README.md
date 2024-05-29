@@ -65,3 +65,5 @@ It consists of the following components:
 3. Creates and returns a configured DataSource bean using the Spring @Bean annotation.
 4. Enables other components of the application to access the configured data source for database interaction.
 
+Utilizes a logger, such as SLF4J, to record important events, debug information, and errors occurring within the controller.
+Integrates Swagger, a powerful tool for documenting and testing RESTful APIs, to generate API documentation and provide an interactive API explorer for developers.
