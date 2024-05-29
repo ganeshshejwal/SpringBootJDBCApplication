@@ -2,6 +2,7 @@ package com.webapplication.employeeProject.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,7 +26,7 @@ public class EmployeeDao {
         try(Connection con = dbconnection.getConnection();
             PreparedStatement ptmt = con.prepareStatement("INSERT INTO employee (id, name, salary,joindate) VALUES (?, ?, ?, ?)");
             ){
-            ptmt.setInt(1, employee.getId());
+            ptmt.setObject(1, employee.getId());
             ptmt.setString(2, employee.getName());
             ptmt.setInt(3, employee.getSalary());
             ptmt.setTimestamp(4, employee.getJoindate());
@@ -37,15 +38,15 @@ public class EmployeeDao {
         return employee;
     }
 
-    public Employee getEmployee(int id){
+    public Employee getEmployee(UUID id){
         Employee employee=null;
         try(Connection con = dbconnection.getConnection();
             PreparedStatement ptmt = con.prepareStatement("SELECT * FROM employee WHERE id=?")
             ){
-            ptmt.setInt(1, id);
+            ptmt.setObject(1, id);
             ResultSet resultSet = ptmt.executeQuery();
             while(resultSet.next()){
-               int employeeId=resultSet.getInt(1);
+               UUID employeeId=(UUID)resultSet.getObject(1);
                String employeeName=resultSet.getString(2);
                int employeeSal= resultSet.getInt(3);
                Timestamp employeeJoinDate=resultSet.getTimestamp(4);
@@ -64,7 +65,7 @@ public class EmployeeDao {
             ){ 
             ResultSet resultSet = ptmt.executeQuery();
             while(resultSet.next()){
-                int employeeId=resultSet.getInt(1);
+                UUID employeeId=(UUID)resultSet.getObject(1);
                 String employeeName =resultSet.getString(2);
                 int employeeSalary=resultSet.getInt(3);
                 Timestamp employeeJoinDate=resultSet.getTimestamp(4);
@@ -76,13 +77,13 @@ public class EmployeeDao {
         return employees;
     }
 
-    public Employee updateEmployee(int id,Employee employee){
+    public Employee updateEmployee(UUID id,Employee employee){
         try(Connection con = dbconnection.getConnection();
             PreparedStatement ptmt = con.prepareStatement("UPDATE EMPLOYEE SET name =?,salary=? WHERE id=?");
             ){
             ptmt.setString(1, employee.getName());
             ptmt.setInt(2, employee.getSalary());
-            ptmt.setInt(3,id);
+            ptmt.setObject(3,id);
             ptmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -91,12 +92,13 @@ public class EmployeeDao {
         return employee;
     }
 
-    public void deleteEmployee(int id){
+    public void deleteEmployee(UUID id){
         try(Connection con = dbconnection.getConnection();
             PreparedStatement ptmt = con.prepareStatement("DELETE FROM employee WHERE id=?");
             ){
-            ptmt.execute(); 
-        } catch (SQLException e){
+                ptmt.setObject(1, id);
+                ptmt.execute();
+            } catch (SQLException e){
             e.printStackTrace();
         }
     }

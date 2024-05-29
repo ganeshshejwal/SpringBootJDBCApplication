@@ -1,6 +1,7 @@
 package com.webapplication.employeeProject.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +33,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/{id}")
-    public Employee get(@PathVariable("id") int id){
+    public Employee get(@PathVariable("id") UUID id){
         logger.info("Data Fetched Successfully Using Id");
         return employeeService.getEmployee(id);
     }
@@ -44,15 +45,15 @@ public class EmployeeController {
     }
 
     @PutMapping("/{id}")
-    public Employee update(@PathVariable("id") int id, @RequestBody Employee employee){
+    public Employee update(@PathVariable("id") UUID id, @RequestBody Employee employee){
         logger.info("Data Updated Successfully");
         return employeeService.updateEmployee(id,employee);
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") int id){
+    public String delete(@PathVariable("id") UUID id){
         logger.info("Data Deleted Successfully");
         employeeService.deleteEmployee(id);
-        return "data deleted sucessfully";
+        return "Data deleted sucessfully";
     }
 }

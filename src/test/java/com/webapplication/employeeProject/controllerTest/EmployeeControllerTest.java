@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -33,7 +34,8 @@ public class EmployeeControllerTest {
     
     @Test
     public void saveEmployeeTest(){
-        Employee expectedResult = new Employee(1,"Ganesh",90000,Timestamp.valueOf("2023-06-01 01:02:23"));
+        UUID id=UUID.randomUUID();
+        Employee expectedResult = new Employee(id,"Ganesh",90000,Timestamp.valueOf("2023-06-01 01:02:23"));
         when(employeeService.saveEmployee(expectedResult)).thenReturn(expectedResult);
         Employee actualResult = employeeController.save(expectedResult);
         assertEquals(expectedResult, actualResult);
@@ -41,18 +43,19 @@ public class EmployeeControllerTest {
 
     @Test
     public void getEmployeeTest(){
-        Employee expectedResult = new Employee(1,"Ganesh",90000,Timestamp.valueOf("2023-06-01 01:02:23"));
-        when(employeeService.getEmployee(1)).thenReturn(expectedResult);
-        Employee actualResult = employeeController.get(1);
+        UUID id=UUID.randomUUID();
+        Employee expectedResult = new Employee(id,"Ganesh",90000,Timestamp.valueOf("2023-06-01 01:02:23"));
+        when(employeeService.getEmployee(id)).thenReturn(expectedResult);
+        Employee actualResult = employeeController.get(id);
         assertEquals(expectedResult, actualResult);
     }
 
     @Test 
     public void getAllEmployeesTest(){
         List<Employee> expectedResult = new ArrayList<>();
-        expectedResult.add(new Employee(1, "Ganesh",95000,Timestamp.valueOf("2023-06-01 01:02:23")));
-        expectedResult.add(new Employee(2,"Saurabh",78000,Timestamp.valueOf("2023-06-01 01:02:23")));
-        expectedResult.add(new Employee(3, "Akash", 90000,Timestamp.valueOf("2023-06-01 01:02:23")));
+        expectedResult.add(new Employee(UUID.randomUUID(), "Ganesh",95000,Timestamp.valueOf("2023-06-01 01:02:23")));
+        expectedResult.add(new Employee(UUID.randomUUID(),"Saurabh",78000,Timestamp.valueOf("2023-06-01 01:02:23")));
+        expectedResult.add(new Employee(UUID.randomUUID(), "Akash", 90000,Timestamp.valueOf("2023-06-01 01:02:23")));
         when(employeeService.getAllEmployees()).thenReturn(expectedResult);
         List<Employee> actualResult = employeeController.getAll();
         assertEquals(expectedResult, actualResult);
@@ -60,15 +63,16 @@ public class EmployeeControllerTest {
 
     @Test
     public void updateEmployeeTest(){
-        Employee expectedResult = new Employee(1,"Ganesh",90000,Timestamp.valueOf("2023-06-01 01:02:23"));
-        when(employeeService.updateEmployee(1,expectedResult)).thenReturn(expectedResult);
-        Employee actualResult = employeeController.update(1, expectedResult);
+        UUID id=UUID.randomUUID();
+        Employee expectedResult = new Employee(id,"Ganesh",90000,Timestamp.valueOf("2023-06-01 01:02:23"));
+        when(employeeService.updateEmployee(id,expectedResult)).thenReturn(expectedResult);
+        Employee actualResult = employeeController.update(id, expectedResult);
         assertEquals(expectedResult, actualResult);
     }
 
     @Test
     public void deleteEmployeeTest(){
-        int employeeId = 1;
+        UUID employeeId = UUID.randomUUID();
         employeeController.delete(employeeId);
         verify(employeeService, times(1)).deleteEmployee(employeeId);
     }
