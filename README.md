@@ -60,8 +60,8 @@ It consists of the following components:
 4. Represents the data entities that are persisted in the database, such as id, name, salary, and joindate.
 
 **DatabaseConnection Class:**
-Configures database connectivity for the application.
-Reads database connection properties such as URL, username, password, and driver class name from the application.properties file.
-Creates and returns a configured DataSource bean using the Spring @Bean annotation.
-Enables other components of the application to access the configured data source for database interaction.
+1. Configures database connectivity for the application.
+2. Reads database connection properties such as URL, username, password, and driver class name from the application.properties file.
+3. Creates and returns a configured DataSource bean using the Spring @Bean annotation.
+4. Enables other components of the application to access the configured data source for database interaction.
 
