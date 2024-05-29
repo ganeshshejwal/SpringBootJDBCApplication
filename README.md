@@ -6,7 +6,7 @@ The project appears to be a simple CRUD (Create, Read, Update, Delete) applicati
 **Controller Layer:**
 1. Receives HTTP requests from clients and routes them to appropriate methods.
 2. Methods are:
-     PostMapping("/api/employees") - save(): Creates a new employee record.
+     <br>PostMapping("/api/employees") - save(): Creates a new employee record.
      GetMapping("/api/employees/{id}") - get(): Retrieves data for a specific employee.
      GetMapping("/api/employees") - getAll(): Retrieves data for all employees.
      PutMapping("/api/employees/{id}") - update(): Updates data for a specific employee.
@@ -17,7 +17,7 @@ The project appears to be a simple CRUD (Create, Read, Update, Delete) applicati
 **Service Layer:**
 1. Contains business logic for managing employee data.
 2. Methods of serive layer are:
-     saveEmployee(Employee employee): Saves a new employee record.
+     <br>saveEmployee(Employee employee): Saves a new employee record.
      getEmployee(UUID id): Retrieves data for a specific employee.
      getAllEmployees(): Retrieves data for all employees.
      updateEmployee(UUID id, Employee employee): Updates data for a specific employee.
@@ -28,7 +28,7 @@ The project appears to be a simple CRUD (Create, Read, Update, Delete) applicati
 **DAO Layer:**
 1. Interacts with the database to perform CRUD operations on employee entities.
 2. Methods of dao layer are:
-   saveEmployee(Employee employee):
+   <br>saveEmployee(Employee employee):
      Inserts a new employee record into the database using a prepared statement and try-with-resources.
      Manages database connection, prepared statement creation, and exception handling with try-with-resources.
      Ensures proper cleanup of resources with try-with-resources to maintain application integrity.
