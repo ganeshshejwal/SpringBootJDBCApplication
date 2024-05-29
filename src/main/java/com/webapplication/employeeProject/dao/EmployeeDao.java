@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,11 +23,12 @@ public class EmployeeDao {
     public Employee saveEmployee(Employee employee){
 
         try(Connection con = dbconnection.getConnection();
-            PreparedStatement ptmt = con.prepareStatement("INSERT INTO employee (id, name, salary) VALUES (?, ?, ?)");
+            PreparedStatement ptmt = con.prepareStatement("INSERT INTO employee (id, name, salary,joindate) VALUES (?, ?, ?, ?)");
             ){
             ptmt.setInt(1, employee.getId());
             ptmt.setString(2, employee.getName());
             ptmt.setInt(3, employee.getSalary());
+            ptmt.setTimestamp(4, employee.getJoindate());
             ptmt.executeQuery();
 
         }catch (SQLException e){
@@ -45,7 +48,8 @@ public class EmployeeDao {
                int employeeId=resultSet.getInt(1);
                String employeeName=resultSet.getString(2);
                int employeeSal= resultSet.getInt(3);
-               employee = new Employee(employeeId,employeeName,employeeSal);
+               Timestamp employeeJoinDate=resultSet.getTimestamp(4);
+               employee = new Employee(employeeId,employeeName,employeeSal,employeeJoinDate);
             }
         }catch (SQLException e){
             e.printStackTrace();
@@ -63,7 +67,8 @@ public class EmployeeDao {
                 int employeeId=resultSet.getInt(1);
                 String employeeName =resultSet.getString(2);
                 int employeeSalary=resultSet.getInt(3);
-                employees.add(new Employee(employeeId,employeeName,employeeSalary));
+                Timestamp employeeJoinDate=resultSet.getTimestamp(4);
+                employees.add(new Employee(employeeId,employeeName,employeeSalary,employeeJoinDate));
             }
         }catch (SQLException e){
            e.printStackTrace();

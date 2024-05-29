@@ -5,6 +5,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class EmployeeControllerTest {
     
     @Test
     public void saveEmployeeTest(){
-        Employee expectedResult = new Employee(1,"Ganesh",90000);
+        Employee expectedResult = new Employee(1,"Ganesh",90000,Timestamp.valueOf("2023-06-01 01:02:23"));
         when(employeeService.saveEmployee(expectedResult)).thenReturn(expectedResult);
         Employee actualResult = employeeController.save(expectedResult);
         assertEquals(expectedResult, actualResult);
@@ -40,7 +41,7 @@ public class EmployeeControllerTest {
 
     @Test
     public void getEmployeeTest(){
-        Employee expectedResult = new Employee(1,"Ganesh",90000);
+        Employee expectedResult = new Employee(1,"Ganesh",90000,Timestamp.valueOf("2023-06-01 01:02:23"));
         when(employeeService.getEmployee(1)).thenReturn(expectedResult);
         Employee actualResult = employeeController.get(1);
         assertEquals(expectedResult, actualResult);
@@ -49,9 +50,9 @@ public class EmployeeControllerTest {
     @Test 
     public void getAllEmployeesTest(){
         List<Employee> expectedResult = new ArrayList<>();
-        expectedResult.add(new Employee(1, "Ganesh",95000));
-        expectedResult.add(new Employee(2,"Saurabh",78000));
-        expectedResult.add(new Employee(3, "Akash", 90000));
+        expectedResult.add(new Employee(1, "Ganesh",95000,Timestamp.valueOf("2023-06-01 01:02:23")));
+        expectedResult.add(new Employee(2,"Saurabh",78000,Timestamp.valueOf("2023-06-01 01:02:23")));
+        expectedResult.add(new Employee(3, "Akash", 90000,Timestamp.valueOf("2023-06-01 01:02:23")));
         when(employeeService.getAllEmployees()).thenReturn(expectedResult);
         List<Employee> actualResult = employeeController.getAll();
         assertEquals(expectedResult, actualResult);
@@ -59,7 +60,7 @@ public class EmployeeControllerTest {
 
     @Test
     public void updateEmployeeTest(){
-        Employee expectedResult = new Employee(1,"Ganesh",90000);
+        Employee expectedResult = new Employee(1,"Ganesh",90000,Timestamp.valueOf("2023-06-01 01:02:23"));
         when(employeeService.updateEmployee(1,expectedResult)).thenReturn(expectedResult);
         Employee actualResult = employeeController.update(1, expectedResult);
         assertEquals(expectedResult, actualResult);

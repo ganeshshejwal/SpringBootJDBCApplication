@@ -1,5 +1,6 @@
 package com.webapplication.employeeProject.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ public class EmployeeService {
     private EmployeeDao employeeDao;
 
     public Employee saveEmployee(Employee employee){
+        employee.setJoindate(new Timestamp(System.currentTimeMillis()));
         return employeeDao.saveEmployee(employee);
     }
 
@@ -32,11 +34,4 @@ public class EmployeeService {
     public void deleteEmployee(int id){
         employeeDao.deleteEmployee(id);
     }
-
-    public Employee save(Employee expectedResult) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
-    }
-
-    
 }
