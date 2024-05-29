@@ -1,7 +1,7 @@
 **Project Description:**
 
 The project appears to be a simple CRUD (Create, Read, Update, Delete) application for managing employee data. 
-\It consists of the following components:
+<br>It consists of the following components:
 
 **Controller Layer:**
 1. Receives HTTP requests from clients and routes them to appropriate methods.
@@ -66,4 +66,4 @@ The project appears to be a simple CRUD (Create, Read, Update, Delete) applicati
 4. Enables other components of the application to access the configured data source for database interaction.
 
 Utilizes a logger, such as SLF4J, to record important events, debug information, and errors occurring within the controller.
-\Integrates Swagger, a powerful tool for documenting and testing RESTful APIs, to generate API documentation and provide an interactive API explorer for developers.
+<br>Integrates Swagger, a powerful tool for documenting and testing RESTful APIs, to generate API documentation and provide an interactive API explorer for developers.
