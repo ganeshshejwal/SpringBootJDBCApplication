@@ -63,3 +63,33 @@ The project appears to be a simple CRUD (Create, Read, Update, Delete) applicati
 
 Utilizes a logger, such as SLF4J, to record important events, debug information, and errors occurring within the controller.
 <br>Integrates Swagger, a powerful tool for documenting and testing RESTful APIs, to generate API documentation and provide an interactive API explorer for developers.
+
+
+**Build Steps**
+1. Make sure you have Java Development Kit (JDK) version 21 installed on your machine.
+2. Open the project in your preferred Integrated Development Environment (IDE) or navigate to the project directory using a terminal or command prompt.
+3. Ensure that you have the **build.gradle** file in the project root directory. This file should contain the project configuration and dependencies.
+4. Build the project using Gradle by running the following command in the project directory:
+   <br>Copy code
+   **./gradlew build**
+<br>This command will compile the source code, run unit tests, and package the application into a JAR file.
+
+**Execution Steps**
+1. After successfully building the project, navigate to the build/libs directory, where the JAR file is generated.
+2. Run the following command to start the Spring Boot application:
+   <br>Copy code
+   **java -jar <jar-file-name>.jar**
+<br>Replace <jar-file-name> with the actual name of the JAR file generated during the build process.
+3. Alternatively, you can run the application from your IDE by locating the main class **(com.webapplication.employeeProject.EmployeeProjectApplication)** and running it as a Java application.
+4. Once the application is running, you can access the API endpoints using a tool like Postman or cURL. The available endpoints are:
+   <br>**POST /api/employees: Save a new employee**
+   <br>**GET /api/employees/{id}: Get an employee by ID**
+   <br>**GET /api/employees: Get all employees**
+   <br>**PUT /api/employees/{id}: Update an employee by ID**
+   <br>**DELETE /api/employees/{id}: Delete an employee by ID**
+5. Make sure to configure the database connection properties in the **application.properties** file or provide them as environment variables. The required properties are:
+<br>spring.datasource.url
+<br>spring.datasource.username
+<br>spring.datasource.password
+<br>spring.datasource.driver-class-name
+<br>The application will automatically create the required database table (employee) if it doesn't exist.
