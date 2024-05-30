@@ -1,4 +1,4 @@
-<h5>Project Description:</h5>
+<h1>Project Description:</h1>
 
 The project appears to be a simple CRUD (Create, Read, Update, Delete) application for managing employee data. 
 <br>It consists of the following components:
