@@ -65,7 +65,7 @@ Utilizes a logger, such as SLF4J, to record important events, debug information,
 <br>Integrates Swagger, a powerful tool for documenting and testing RESTful APIs, to generate API documentation and provide an interactive API explorer for developers.
 
 
-<h5>Build Steps</h5>
+<h1>Build Steps</h1>
 1. Make sure you have Java Development Kit (JDK) version 21 installed on your machine.
 2. Open the project in your preferred Integrated Development Environment (IDE) or navigate to the project directory using a terminal or command prompt.
 3. Ensure that you have the **build.gradle** file in the project root directory. This file should contain the project configuration and dependencies.
@@ -74,7 +74,7 @@ Utilizes a logger, such as SLF4J, to record important events, debug information,
    **./gradlew build**
 <br>This command will compile the source code, run unit tests, and package the application into a JAR file.
 
-<h5>Execution Steps</h5>
+<h1>Execution Steps</h1>
 1. After successfully building the project, navigate to the build/libs directory, where the JAR file is generated.
 2. Run the following command to start the Spring Boot application:
    <br>Copy code
