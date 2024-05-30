@@ -78,8 +78,7 @@ Utilizes a logger, such as SLF4J, to record important events, debug information,
 1. After successfully building the project, navigate to the build/libs directory, where the JAR file is generated.<br>
 2. Run the following command to start the Spring Boot application:
    <br>Copy code:
-   <b>java -jar <jar-file-name>.jar</b>
-<br>Replace <jar-file-name> with the actual name of the JAR file generated during the build process.<br>
+   <b>java -jar employeeProject-0.0.1.jar</b>
 3. Alternatively, you can run the application from your IDE by locating the main class <b>(com.webapplication.employeeProject.EmployeeProjectApplication)</b> and running it as a Java application.<br>
 4. Once the application is running, you can access the API endpoints using a tool like Postman or cURL. The available endpoints are:
    <br><b>POST /api/employees: Save a new employee</b>
