@@ -66,30 +66,31 @@ Utilizes a logger, such as SLF4J, to record important events, debug information,
 
 
 <h1>Build Steps</h1>
-1. Make sure you have Java Development Kit (JDK) version 21 installed on your machine.
-2. Open the project in your preferred Integrated Development Environment (IDE) or navigate to the project directory using a terminal or command prompt.
-3. Ensure that you have the **build.gradle** file in the project root directory. This file should contain the project configuration and dependencies.
+1. Make sure you have Java Development Kit (JDK) version 21 installed on your machine.<br>
+2. Open the project in your preferred Integrated Development Environment (IDE) or navigate to the project directory using a terminal or command prompt.<br>
+3. Ensure that you have the <b>build.gradle</b> file in the project root directory. This file should contain the project configuration and dependencies.<br>
 4. Build the project using Gradle by running the following command in the project directory:
    <br>Copy code
-   **./gradlew build**
+   <b>./gradlew build</b>
 <br>This command will compile the source code, run unit tests, and package the application into a JAR file.
 
 <h1>Execution Steps</h1>
-1. After successfully building the project, navigate to the build/libs directory, where the JAR file is generated.
+1. After successfully building the project, navigate to the build/libs directory, where the JAR file is generated.<br>
 2. Run the following command to start the Spring Boot application:
-   <br>Copy code
-   **java -jar <jar-file-name>.jar**
-<br>Replace <jar-file-name> with the actual name of the JAR file generated during the build process.
-3. Alternatively, you can run the application from your IDE by locating the main class **(com.webapplication.employeeProject.EmployeeProjectApplication)** and running it as a Java application.
+   <br>Copy code:
+   <b>java -jar <jar-file-name>.jar</b>
+<br>Replace <jar-file-name> with the actual name of the JAR file generated during the build process.<br>
+3. Alternatively, you can run the application from your IDE by locating the main class <b>(com.webapplication.employeeProject.EmployeeProjectApplication)</b> and running it as a Java application.<br>
 4. Once the application is running, you can access the API endpoints using a tool like Postman or cURL. The available endpoints are:
-   <br>**POST /api/employees: Save a new employee**
-   <br>**GET /api/employees/{id}: Get an employee by ID**
-   <br>**GET /api/employees: Get all employees**
-   <br>**PUT /api/employees/{id}: Update an employee by ID**
-   <br>**DELETE /api/employees/{id}: Delete an employee by ID**
-5. Make sure to configure the database connection properties in the **application.properties** file or provide them as environment variables. The required properties are:
-<br>spring.datasource.url
-<br>spring.datasource.username
-<br>spring.datasource.password
-<br>spring.datasource.driver-class-name
-<br>The application will automatically create the required database table (employee) if it doesn't exist.
+   <br><b>POST /api/employees: Save a new employee</b>
+   <br><b>GET /api/employees/{id}: Get an employee by ID</b>
+   <br><b>GET /api/employees: Get all employees</b>
+   <br><b>PUT /api/employees/{id}: Update an employee by ID</b>
+   <br><b>DELETE /api/employees/{id}: Delete an employee by ID</b><br>
+5. Make sure to configure the database connection properties in the <b>application.properties</b> file or provide them as environment variables. 
+   <br>The required properties are:
+   <br><b>spring.datasource.url</b>
+   <br><b>spring.datasource.username</b>
+   <br><b>spring.datasource.password</b>
+   <br><b>spring.datasource.driver-class-name</b>
+   <br>The application will automatically create the required database table (employee) if it doesn't exist.
